@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Number Game</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<style>
+		.para{
+			padding-left:600px;
+			font-size: 30px;
+
+		}
+
+	</style>
+</head>
+<body>
+	<div class="jumbotron"> 
+		<h1>WELCOME TO THE GREAT NUMBER GAME!</h1>
+	</div>
+	<p class="para">I am thinking of a number between 1 and 100</p>
+	<h3>Take a Guess</h3>
+	<form action="/guess" method="post">
+		<input type="number" name="guess">
+		<button name="submit" value="submit"> Submit</button>
+	</form>
+
+
+{% with errors = get_flashed_messages(with_categories="error") %}
+	{% if errors %}
+			<div>
+				{% for message in error %}
+				<p>{{message}}</p>
+			{% endfor %}
+			</div>
+		
+	{% endif %}
+{% endwith %}
+
+{% with successes = get_flashed_messages(with_categories="success") %}
+	{% if successes %}
+		<div class="success">
+			{% for message in successes %}
+				<p>{{message}}</p>
+			{% endfor %}
+		</div>
+	{% endif %}
+{% endwith %}
+	<form action="/reset" method="post">
+		<button name='submit' value="submit">Reset</button>
+	</form>
+
+
+</body>
+</html>
